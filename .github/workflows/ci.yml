@@ -72,12 +72,9 @@ jobs:
       - name: Build Docker image
         run: docker build -t edms-api:${{ github.sha }} -t edms-api:1.0.0 .
       - name: Scan image - Trivy (fail on HIGH/CRITICAL)
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          image-ref: edms-api:${{ github.sha }}
-          severity: HIGH,CRITICAL
-          exit-code: '1'
-          ignore-unfixed: true
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 edms-api:${{ github.sha }}
       - name: Validate Kubernetes manifests
         run: |
           curl -sSL https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz | tar xz
