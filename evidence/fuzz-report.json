@@ -1,0 +1,12 @@
+{
+  "target": "POST /api/incidents",
+  "cases": 601,
+  "seed": 24401,
+  "statusCounts": {
+    "400": 598,
+    "413": 2,
+    "oversize_413": 1
+  },
+  "failures": [],
+  "ranAt": "2026-10-08T04:46:10.252Z"
+}

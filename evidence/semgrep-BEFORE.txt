@@ -1,0 +1,69 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 5 Code rules:
+  Scanning 1 file with 5 js rules.
+                   
+                   
+┌─────────────────┐
+│ 6 Code Findings │
+└─────────────────┘
+                                      
+    docs/before/userRoutes.insecure.js
+   ❯❯❱ edms-hardcoded-jwt-secret
+          ❰❰ Blocking ❱❱
+          JWT signed/verified with a hard-coded secret (V-05). Load keys from env / K8s Secret.
+                                                                                               
+            6┆ const SECRET = 'edms-secret-123';                       // V-05 hard-coded secret
+            7┆
+            8┆ function auth(req, res, next) {
+            9┆   try {
+           10┆     req.user = jwt.verify(req.headers.authorization.split(' ')[1], SECRET); // no
+               algorithms option                                                                
+           11┆     next();
+           12┆   } catch (e) { res.status(500).send(e.stack); }       // V-07 leaks internals
+           13┆ }
+            ⋮┆----------------------------------------
+           10┆ req.user = jwt.verify(req.headers.authorization.split(' ')[1], SECRET); // no algorithms
+               option                                                                                  
+   
+   ❯❯❱ edms-jwt-verify-without-algorithms
+          ❰❰ Blocking ❱❱
+          jwt.verify without pinned algorithms allows algorithm confusion (T-12).
+                                                                                 
+           10┆ req.user = jwt.verify(req.headers.authorization.split(' ')[1], SECRET); // no algorithms
+               option                                                                                  
+   
+    ❯❱ edms-stack-trace-leak
+          ❰❰ Blocking ❱❱
+          Stack trace sent to client (V-07).
+                                            
+           12┆ } catch (e) { res.status(500).send(e.stack); }       // V-07 leaks internals
+   
+   ❯❯❱ edms-mass-assignment
+          ❰❰ Blocking ❱❱
+          Object.assign with req.body enables mass assignment of role (V-02).
+                                                                             
+           17┆ Object.assign(user, req.body);                        // V-02 role can be overwritten
+   
+   ❯❯❱ edms-sql-concat
+          ❰❰ Blocking ❱❱
+          SQL built by string concatenation (V-04). Use parameterised queries.
+                                                                              
+           30┆ const rows = await pg.query("SELECT * FROM incident WHERE type = '" + req.query.type +
+               "'"); // V-04 SQLi                                                                    
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 6 (6 blocking)
+ • Rules run: 5
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 5 rules on 1 file: 6 findings.

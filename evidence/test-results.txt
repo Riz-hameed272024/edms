@@ -1,0 +1,14 @@
+PASS tests/unit/authService.test.js (8.906 s)
+PASS tests/integration/rateLimit.test.js
+PASS tests/integration/incidentPriority.test.js
+PASS tests/fuzz/reportFuzz.test.js
+PASS tests/system/endToEnd.test.js
+PASS tests/integration/roleEscalation.test.js
+PASS tests/unit/auditService.test.js
+PASS tests/unit/approvalAndAllocation.test.js
+
+Test Suites: 8 passed, 8 total
+Tests:       29 passed, 29 total
+Snapshots:   0 total
+Time:        28.446 s
+Ran all test suites.

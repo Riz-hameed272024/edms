@@ -1,0 +1,9 @@
+node_modules
+.git
+.github
+tests
+coverage
+docs
+k8s
+.env
+*.pem

@@ -1,0 +1,6 @@
+# Security-sensitive code needs review by the security champion
+/src/middleware/   @security-champion
+/src/services/authService.js  @security-champion
+/src/services/approvalService.js  @security-champion
+/k8s/  @security-champion
+/.github/  @security-champion

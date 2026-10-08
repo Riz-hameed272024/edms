@@ -1,0 +1,41 @@
+{
+  "name": "edms-api",
+  "version": "1.0.0",
+  "description": "Emergency Disaster Management System - secure REST API (24CYS401 lab)",
+  "main": "src/server.js",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest --runInBand",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:system": "jest tests/system",
+    "test:fuzz": "jest tests/fuzz",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "express": "4.22.3",
+    "express-rate-limit": "7.5.0",
+    "helmet": "8.0.0",
+    "joi": "17.13.8",
+    "jsonwebtoken": "9.0.2",
+    "otplib": "12.0.1"
+  },
+  "devDependencies": {
+    "eslint": "8.57.1",
+    "eslint-plugin-security": "1.7.1",
+    "jest": "29.7.0",
+    "supertest": "7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "testTimeout": 60000
+  }
+}

@@ -1,0 +1,20 @@
+
+/home/claude/edms/src/lib/logger.js
+   9:5   warning  Generic Object Injection Sink  security/detect-object-injection
+  16:3   warning  Generic Object Injection Sink  security/detect-object-injection
+  16:22  warning  Generic Object Injection Sink  security/detect-object-injection
+
+/home/claude/edms/src/middleware/security.js
+  34:80  warning  Generic Object Injection Sink  security/detect-object-injection
+
+/home/claude/edms/src/services/approvalService.js
+  14:3  warning  Generic Object Injection Sink  security/detect-object-injection
+  18:8  warning  Generic Object Injection Sink  security/detect-object-injection
+
+/home/claude/edms/src/services/userService.js
+  46:39  warning  Generic Object Injection Sink  security/detect-object-injection
+  46:62  warning  Generic Object Injection Sink  security/detect-object-injection
+  46:72  warning  Generic Object Injection Sink  security/detect-object-injection
+
+✖ 9 problems (0 errors, 9 warnings)
+

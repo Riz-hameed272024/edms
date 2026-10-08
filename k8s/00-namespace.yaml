@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edms
+  labels:
+    pod-security.kubernetes.io/enforce: restricted   # Pod Security Admission: restricted profile
+    pod-security.kubernetes.io/enforce-version: latest

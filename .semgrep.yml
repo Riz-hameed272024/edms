@@ -1,0 +1,32 @@
+rules:
+  - id: edms-hardcoded-jwt-secret
+    languages: [javascript]
+    severity: ERROR
+    message: JWT signed/verified with a hard-coded secret (V-05). Load keys from env / K8s Secret.
+    pattern-either:
+      - pattern: jwt.sign($P, "...", ...)
+      - pattern: jwt.verify($T, "...", ...)
+      - pattern: |
+          const $S = "...";
+          ...
+          jwt.verify($T, $S, ...)
+  - id: edms-jwt-verify-without-algorithms
+    languages: [javascript]
+    severity: ERROR
+    message: jwt.verify without pinned algorithms allows algorithm confusion (T-12).
+    pattern: jwt.verify($T, $K)
+  - id: edms-mass-assignment
+    languages: [javascript]
+    severity: ERROR
+    message: Object.assign with req.body enables mass assignment of role (V-02).
+    pattern: Object.assign($OBJ, req.body)
+  - id: edms-sql-concat
+    languages: [javascript]
+    severity: ERROR
+    message: SQL built by string concatenation (V-04). Use parameterised queries.
+    pattern: $DB.query("..." + $X + "...")
+  - id: edms-stack-trace-leak
+    languages: [javascript]
+    severity: WARNING
+    message: Stack trace sent to client (V-07).
+    pattern: $RES.send($E.stack)
