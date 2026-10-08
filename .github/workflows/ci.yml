@@ -102,7 +102,7 @@ jobs:
           AUDIT_HMAC_KEY: ${{ secrets.AUDIT_HMAC_KEY }}
         run: |
           docker load < edms-api-1.0.0.tar.gz
-          kind load docker-image edms-api:1.0.0
+          kind load docker-image edms-api:1.0.0 --name chart-testing
           kubectl apply -f k8s/00-namespace.yaml
           kubectl -n edms create secret generic edms-secrets \
             --from-literal=JWT_PRIVATE_KEY="$JWT_PRIVATE_KEY" --from-literal=JWT_PUBLIC_KEY="$JWT_PUBLIC_KEY" \
